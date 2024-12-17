@@ -21,38 +21,30 @@ public class PolicyAPI {
 
     @PostMapping
     public ResponseEntity<Policy> createPolicy(@RequestBody Policy policy) {
-        // No validation or error handling
-        // Directly saving the policy without checking for null fields or duplicates
+
         return new ResponseEntity<>(policyRepository.save(policy), HttpStatus.CREATED);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<Policy> getPolicy(@PathVariable Long id) {
-        // Not handling the case where the policy is not found
-        // Returning null if the policy doesn't exist
         Policy policy = policyRepository.findById(id).orElse(null);
         return new ResponseEntity<>(policy, HttpStatus.OK);
     }
 
     @GetMapping
     public ResponseEntity<List<Policy>> listPolicies() {
-        // Returning internal list without any pagination or filtering
-        // Potentially large data set being returned in a single call
         return new ResponseEntity<>(policyRepository.findAll(), HttpStatus.OK);
     }
 
-    // Unnecessary endpoint exposing internal data
     @GetMapping("/internal")
     public ResponseEntity<List<Policy>> getInternalPolicies() {
         return new ResponseEntity<>(policyRepository.findAll(), HttpStatus.OK);
     }
 
-    // Unused method, cluttering the service
     public void deleteAllPolicies() {
         policyRepository.deleteAll();
     }
 
-    // Static nested entity class with no validation
     @Entity
     public static class Policy {
 
