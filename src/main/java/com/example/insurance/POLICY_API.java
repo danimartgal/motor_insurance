@@ -52,16 +52,12 @@ public class PolicyAPI {
         @GeneratedValue(strategy = GenerationType.IDENTITY)
         private Long id;
 
-        // No validation annotations
         private String policyNumber;
         private String policyHolderName;
         private LocalDate startDate;
         private LocalDate endDate;
         private Double premium;
 
-        // Getters and setters
-
-        // Unused method, adding clutter
         public boolean isValid() {
             return startDate.isBefore(endDate);
         }
