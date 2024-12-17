@@ -69,7 +69,9 @@ public class PolicyAPI {
 
     @Repository
     public interface PolicyRepository extends JpaRepository<Policy, Long> {
+        // No custom queries, assuming default behavior is sufficient
 
+        // Unnecessary custom query without implementation
         List<Policy> findByPolicyHolderName(String name);
     }
 }
